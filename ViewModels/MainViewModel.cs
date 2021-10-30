@@ -34,14 +34,21 @@ namespace NoteApp.ViewModels
             }
             catch (System.Exception)
             {
-                MessageBox.Show("Please check a note!", "Error");
+                MessageBox.Show("Select the note!", "Error");
             }
         }
         public void DeleteNote()
         {
-            Note note = context.Notes.Find(SelectedNote.Id);
-            context.Notes.Remove(note);
-            context.SaveChanges();
+            try
+            {
+                Note note = context.Notes.Find(SelectedNote.Id);
+                context.Notes.Remove(note);
+                context.SaveChanges();
+            }
+            catch (System.Exception)
+            {
+                MessageBox.Show("Error", "The note wasn`t deleted!");
+            }
         }
 
         public void LoadNotePanel()

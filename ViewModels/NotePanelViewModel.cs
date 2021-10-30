@@ -3,6 +3,7 @@ using NoteApp.Models;
 using NoteApp.Views;
 using System;
 using System.Linq;
+using System.Windows;
 
 namespace NoteApp.ViewModels
 {
@@ -28,7 +29,7 @@ namespace NoteApp.ViewModels
         public NotePanelViewModel()
         { }
 
-        public NotePanelViewModel(Note note) : base()
+        public NotePanelViewModel(Note note)
         {
             _note = note;
             FillPanel();
@@ -42,27 +43,34 @@ namespace NoteApp.ViewModels
 
         public void SaveNote(string title, string text)
         {
-            if (_note == null)
+            try
             {
-                _note = new Note()
+                if (_note == null)
                 {
-                    Title = title,
-                    Text = text,
-                    UpdateDate = DateTime.Now,
-                    CreationDate = DateTime.Now
-                };
-                context.Notes.Add(_note);
-            }
-            else
-            {
-                _note = context.Notes.SingleOrDefault(n => n.Id == _note.Id);
-                _note.Title = Title;
-                _note.Text = Text;
-                _note.UpdateDate = DateTime.Now;
-            }
-            context.SaveChanges();
+                    _note = new Note()
+                    {
+                        Title = title,
+                        Text = text,
+                        UpdateDate = DateTime.Now,
+                        CreationDate = DateTime.Now
+                    };
+                    context.Notes.Add(_note);
+                }
+                else
+                {
+                    _note = context.Notes.SingleOrDefault(n => n.Id == _note.Id);
+                    _note.Title = Title;
+                    _note.Text = Text;
+                    _note.UpdateDate = DateTime.Now;
+                }
+                context.SaveChanges();
 
-            base.TryCloseAsync();
+                base.TryCloseAsync();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error", "Something went wrong!");
+            }
         }
     }
 }

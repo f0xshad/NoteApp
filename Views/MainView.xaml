@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoteApp"
         mc:Ignorable="d" FontSize="14" FontFamily="Avenir" Background="#262626" Foreground="#f1f1f1"
-        Title="NoteApp" Height="600" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="NoteApp" Height="600" Width="800" MinHeight="300" MinWidth="600" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Window.Resources>
         <DataTemplate x:Key="NoteListItemTemplate">
             <Grid>
@@ -18,14 +18,14 @@
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="1" FontWeight="Bold" Text="{Binding Path=Title}"/>
                 <TextBlock Grid.Row="2" FontSize="10" Foreground="#FF979494" Text="{Binding Path=CreationDate, StringFormat=dd.MM.yy}"/>
-                <TextBlock Grid.Row="3" TextWrapping="WrapWithOverflow" MaxWidth="150" Text="{Binding Path=Text}"/>
+                <TextBlock Grid.Row="3" TextWrapping="WrapWithOverflow" Width="150" Text="{Binding Path=Text}"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="auto" MinWidth="170" MaxWidth="300"/>
+            <ColumnDefinition Width="auto" MinWidth="170"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
@@ -43,22 +43,13 @@
             <Button Background="#212529" Foreground="#f1f1f1" x:Name="EditNote" Width="50">Edit</Button>
             <Button Background="#212529" Foreground="#f1f1f1" x:Name="DeleteNote" Width="50">Delete</Button>
         </StackPanel>
-        <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" ShowsPreview="False" Background="#212529" Width="3"/>
 
         <!-- Column 2 -->
-        <ListBox x:Name="NotesList" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" MaxWidth="170" SelectionMode="Single" Foreground="#f1f1f1" Background="#212529" SelectedItem="{Binding Path=SelectedNote}" ItemTemplate="{DynamicResource NoteListItemTemplate}">
+        <ListBox x:Name="NotesList" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" SelectionMode="Single" Foreground="#f1f1f1" Background="#212529" SelectedItem="{Binding SelectedNote}" ItemTemplate="{DynamicResource NoteListItemTemplate}">
 
         </ListBox>
-        <!--<DataGrid x:Name="mainDG" AutoGenerateColumns="False" Grid.Row="2" Grid.Column="2" CanUserAddRows="False" HeadersVisibility="Column" SelectedItem="{Binding Path=SelectedNote}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Заголовок" Binding="{Binding Path=Title}" Width="100"/>
-                <DataGridTextColumn Header="Содержание" Binding="{Binding Path=Text}" Width="*"/>
-                <DataGridTextColumn Header="Изменено" Binding="{Binding Path=UpdateDate}" Width="100"/>
-                <DataGridTextColumn Header="Создано" Binding="{Binding Path=CreationDate}" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>-->
 
         <!-- Column 3 -->
-        <ContentControl x:Name="ActiveItem" Grid.Column="2" Grid.Row="3" Grid.RowSpan="2"/>
+        <ContentControl x:Name="ActiveItem" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"/>
     </Grid>
 </Window>

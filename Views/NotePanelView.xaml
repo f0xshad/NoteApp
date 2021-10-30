@@ -18,11 +18,11 @@
         </Grid.RowDefinitions>
         
         <!-- Row 0 -->
-        <Button x:Name="SaveNote" Grid.Row="0" Grid.Column="0" Margin="5" Background="#262626" Foreground="#f1f1f1">Save</Button>
-        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="Title" />
-        <TextBox x:Name="Title" Grid.Row="0" Grid.Column="2" Margin="5" Width="300" HorizontalAlignment="Left" Background="#f1f1f1" />
+        <Button x:Name="SaveNote" Grid.Row="0" Grid.Column="0" Margin="5, 0, 5, 5" Background="#262626" Foreground="#f1f1f1">Save</Button>
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5, 0, 5, 5" Text="Title" />
+        <TextBox x:Name="Title" Grid.Row="0" Grid.Column="2" Margin="5, 0, 5, 5" Width="300" HorizontalAlignment="Left" Background="#f1f1f1" />
 
         <!-- Row 1 -->
-        <TextBox x:Name="Text" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" TextWrapping="WrapWithOverflow" Background="#f1f1f1" />
+        <TextBox x:Name="Text" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5, 5, 5, 0" TextWrapping="WrapWithOverflow" Background="#f1f1f1" />
     </Grid>
 </UserControl>
